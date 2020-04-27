@@ -2,13 +2,23 @@ import React from 'react';
 import './App.css';
 
 import Register from './components/Register'
+import { Navigation } from './components/Navigation'
+import { NavItem } from './components/Navigation'
+
+
+
 
 function App() {
 
-
+// looking for a better method to import these Icons
   
   return (
     <div className="App">
+      <Navigation>
+         <NavItem icon ="🛎" ></NavItem>
+         <NavItem icon ="📜"></NavItem>
+         <NavItem icon ="🔑"></NavItem>
+        </Navigation>
       <header className="App-header">
         {/* <h1>
           The Silent Auction! 

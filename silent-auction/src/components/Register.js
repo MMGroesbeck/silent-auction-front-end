@@ -16,7 +16,7 @@ const Register = () => {
    }
     
    const changeHandler = e => {
-       setSignup({... signup, [e.target.name]: e.target.value })
+       setSignup({...signup, [e.target.name]: e.target.value })
    }
    
    
@@ -29,6 +29,7 @@ const Register = () => {
             name = "username"
             value = "username"
             type = "text" 
+            placeholder = "username"
             onChange = {changeHandler}
             />
             <br></br>
@@ -37,6 +38,7 @@ const Register = () => {
             name = "password"
             value = "password"
             type = "text"
+            placeholder = "password"
             onchange = {changeHandler}
             />
             <br></br>
@@ -45,6 +47,7 @@ const Register = () => {
             name = "email"
             vaule = "email"
             type = "text"
+            placeholder = "email"
             onchange = {changeHandler}
             />
         </form>
