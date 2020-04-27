@@ -50,6 +50,12 @@ const Register = () => {
             placeholder = "email"
             onchange = {changeHandler}
             />
+            <br></br>
+            <p>Register as: 
+            <button> Buyer </button> or 
+            <button> Seller </button>
+            </p>
+        
         </form>
 </div>
     )
