@@ -20,12 +20,17 @@
 //    <p> This field requires a minimum length of 3 characters. </p> 
 // )}
 
-// My edit
 import React from 'react'
 
 const login = () => {
 
     return
-        //  <form>
+    <form>
+        // LOGIN AS BUYER OR SELLER
+        <label>Username: &nbsp;</label>
+        <label>Password: &nbsp;</label>
+        <label>Email: &nbsp;</label>
+        <button>Log In</button>
+    </form>
 }
 export default Login
