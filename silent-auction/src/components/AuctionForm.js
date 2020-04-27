@@ -10,7 +10,7 @@ const initialAuction = {
 }
 
 
-const auctionForm = () => {
+const AuctionForm = () => {
 // The Seller form for creating an auction
     const [auction, setAuction] = useState(initialAuction);
 
@@ -51,4 +51,4 @@ const auctionForm = () => {
         </div>
     )
 }
-export default auctionForm
+export default AuctionForm
