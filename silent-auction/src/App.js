@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 import Register from './components/Register'
-import { Navigation } from './components/Navigation'
+import { Navigation, DropdownMenu } from './components/Navigation'
 import { NavItem } from './components/Navigation'
 
 
@@ -15,9 +15,9 @@ function App() {
   return (
     <div className="App">
       <Navigation>
-         <NavItem icon ="🛎" ></NavItem>
-         <NavItem icon ="📜"></NavItem>
-         <NavItem icon ="🔑"></NavItem>
+         <NavItem icon ="🛎">
+           <DropdownMenu />
+         </NavItem>
         </Navigation>
       <header className="App-header">
         {/* <h1>
