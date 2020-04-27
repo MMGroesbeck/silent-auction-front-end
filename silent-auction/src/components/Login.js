@@ -27,7 +27,7 @@ const Login = () => {
                 ref={register({ required: true })}  // include the 'required' option
             />
             <br />
-            {errors.username && <span>This field is required</span>}<br />
+            {errors.username && <span>A user name is required.</span>}<br />
 
             <label htmlFor='password'>Password: &nbsp;</label>
             <input 
@@ -35,7 +35,8 @@ const Login = () => {
             name='password' 
             id='password' 
             ref={register({ required: true })}
-            />
+            /> <br />
+
             {errors.password && <span>A password is required.</span>}<br />
              <br />
 
@@ -45,7 +46,7 @@ const Login = () => {
             name='email' 
             id='email' 
             ref={register({ required: true })}
-            />
+            /> <br />
             {errors.email && <span>Please provide a valid email address.</span>}<br />
             <br /> <br />
 
@@ -55,7 +56,6 @@ const Login = () => {
 }
 
 export default Login
-
 
 
 // LOGIN PAGE
