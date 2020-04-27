@@ -32,7 +32,7 @@ const Login = () => {
             <label htmlFor='password'>Password: &nbsp;</label>
             <input 
             type='password' 
-            name='' 
+            name='password' 
             id='password' 
             ref={register({ required: true })}
             />
@@ -55,7 +55,6 @@ const Login = () => {
 }
 
 export default Login
-
 
 
 
