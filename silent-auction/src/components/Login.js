@@ -24,27 +24,27 @@ import React from 'react'
 
 const Login = () => {
 
-    return
-    (
+    return (
         <form >
-            // LOGIN AS BUYER OR SELLER
+            <p>Login as Buyer or Seller</p>
             <input type="radio" id="buyer" name="client" value="buyer" />
-            <label for="buyer">Seller</label><br></br>
-            
-            <input type="radio" id="seller" name="client" value="seller" />
-            <label for="seller">Seller</label><br></br>
+            <label for="buyer">Buyer</label>&nbsp;
 
-            <label htmlFor='username'>Username: &nbsp;</label>
-            <input type='text' name='username' id='username' value='' />
+             <input type="radio" id="seller" name="client" value="seller" />
+             <label for="seller">Seller</label><br /><br />
 
-            <label htmlFor='password'>Password: &nbsp;</label>
-            <input type='password' name='' id='password' value='' />
+             <label htmlFor='username'>Username: &nbsp;</label>
+             <input type='text' name='username' id='username' value='' /><br />
 
-            <label htmlFor='email'>Email: &nbsp;</label>
-            <input type='text' name='email' id='email' value='' />
+             <label htmlFor='password'>Password: &nbsp;</label>
+             <input type='password' name='' id='password' value='' /><br />
 
-            <button>Log In</button>
+             <label htmlFor='email'>Email: &nbsp;</label>
+             <input type='text' name='email' id='email' value='' /><br /> <br />
+
+             <button>Log In</button>
         </form>
-    )
+    );
 }
+
 export default Login
