@@ -25,17 +25,14 @@ import { useForm } from 'react-hook-form'
 
 const Login = () => {
 
-    const { register } = useForm({
-        defaultValues: {
-            client: "",
-            userName: "",
-            password: "",
-            email: ""
-        }
-    })
-    
+
+    const { register, handleSubmit, watch, errors } = useForm()
+    const onSubmit = data => { console.log(data) }
+
     return (
-        <form >
+        <form onSubmit={handleSubmit(onSubmit)}>
+            {/* // 'handleSubmit' will validate your inputs before invoking 'onSubmit' */}
+
             <p>Login as Buyer or Seller</p>
             <input type="radio" id="buyer" name="client" value="buyer" />
             <label for="buyer">Buyer</label>&nbsp;
@@ -43,8 +40,17 @@ const Login = () => {
             <input type="radio" id="seller" name="client" value="seller" />
             <label for="seller">Seller</label><br /><br />
 
-            <label htmlFor='username'>Username: &nbsp;</label>
-            <input type='text' name='username' id='username' value='' /><br />
+            <label htmlFor='username'>User Name: &nbsp;</label>
+            {/* Insert form validation for username control */}
+            <input
+                type='text'
+                name='username'
+                id='username'
+                defaultValue="test" ref={register}  // register the username input
+                ref={register({ required: true })}  // include the 'required' option
+            />
+            <br />
+            {errors.username && <span>This field is required</span>}<br />
 
             <label htmlFor='password'>Password: &nbsp;</label>
             <input type='password' name='' id='password' value='' /><br />
