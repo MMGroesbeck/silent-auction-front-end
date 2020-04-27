@@ -1,30 +1,63 @@
-// REGISTER PAGE
 
-// { USEFORM } FROM 'REACT-HOOK-FORM'? (FAST + EASY VALIDATION!)
+import React, { useState } from 'react'
+import axiosWithAuth from '../utils/axiosWithAuth'
 
-// <FORM>
-    //REGISTER AS A BUYER OR A SELLER
-    // USERNAME 
-    // PASSWORD
-    // EMAIL
-    // 'SIGN UP' BUTTON
-// </FORM>
+const Register = () => {
+   const [signup, setSignup] = useState({
+       username: "", 
+       password: "",
+       email: ""
+   })
 
-// EXAMPLE OF VALIDATION WITH USEFORM: 
-// {errors.username && errors.username.type === "minLength" && (
-//    <p> This field requires a minimum length of 3 characters. </p> 
-// )}
-
-// EXAMPLE OF VALIDATION WITH USEFORM: 
-// {errors.username && errors.username.type === "required" && (
-//    <p> This field requires a minimum length of 3 characters. </p> 
-// )}
-
-
-import React from 'react'
-
-const register = () => {
+   const onSubmit = () => {
+       //   axios call
+       //   .then( res => {what is the response})
+       //   .catch()
+   }
+    
+   const changeHandler = e => {
+       setSignup({...signup, [e.target.name]: e.target.value })
+   }
    
    
-    return
+    return(
+<div>
+        <h3>Register Now!</h3>
+        <form >
+            <label>Create a Username: </label>
+            <input 
+            name = "username"
+            value = "username"
+            type = "text" 
+            placeholder = "username"
+            onChange = {changeHandler}
+            />
+            <br></br>
+            <label>Create a Password: </label>
+            <input 
+            name = "password"
+            value = "password"
+            type = "text"
+            placeholder = "password"
+            onchange = {changeHandler}
+            />
+            <br></br>
+            <label>Register with email: </label>
+            <input 
+            name = "email"
+            vaule = "email"
+            type = "text"
+            placeholder = "email"
+            onchange = {changeHandler}
+            />
+            <br></br>
+            <p>Register as: 
+            <button> Buyer </button> or 
+            <button> Seller </button>
+            </p>
+        
+        </form>
+</div>
+    )
 }
+export default Register

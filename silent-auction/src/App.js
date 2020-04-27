@@ -3,14 +3,16 @@ import { Route, Switch } from 'react-router-dom'
 
 // Components
 import Auctions from './components/Auctions';
-import Navigation from './components/Navigation';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuctionForm from './components/AuctionForm';
+import { Navigation, DropdownMenu } from './components/Navigation'
+import { NavItem } from './components/Navigation'
 
 // Context
 import { UserContext } from './contexts/UserContext';
 import { AuctionContext } from './contexts/AuctionContext';
+
 
 import './App.css';
 import axios from 'axios';
@@ -31,12 +33,17 @@ const App = () => {
     getAuctionList();
   }, []);
 
+
   return (
     <div className="App">
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <AuctionContext value={auctionList}>
         {/* 
-      <Navigation />
+            <Navigation>
+         <NavItem icon ="🛎">
+           <DropdownMenu />
+         </NavItem>
+        </Navigation>
 
       <Switch>
         <ProtectedRoute exact path="/protected/buyer">
@@ -52,7 +59,6 @@ const App = () => {
       */}
       </AuctionContext>
       </UserContext.Provider>
-
 
 
     </div>
