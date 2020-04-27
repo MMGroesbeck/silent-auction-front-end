@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom'
 
+// Components
 import Auctions from './components/Auctions';
 import Navigation from './components/Navigation';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuctionForm from './components/AuctionForm';
 
+// Context
+import { UserContext } from './contexts/UserContext';
+import { AuctionContext } from './contexts/AuctionContext';
 
 import './App.css';
 import axios from 'axios';
 
 
-
 const App = () => {
   const [auctionList, setAuctionList] = useState([])
+  const [currentUser, setCurrentUser] = useState({})
 
   const getAuctionList = () => {
     axios
@@ -29,26 +33,10 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* Leaving this stuff here just in case, will put router below */}
-      {/* <header className="App-header">
-        <h1>
-          The Silent Auction! 
-        </h1>
-        <i class="fas fa-gavel"></i>
-        <p>Don't have an account?
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          
-        >
-            Sign up!
-        </a>
-        </p>
-      </header> */}
-
-      {/* <Navigation />
+      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <AuctionContext value={auctionList}>
+        {/* 
+      <Navigation />
 
       <Switch>
         <ProtectedRoute exact path="/protected/buyer">
@@ -59,7 +47,12 @@ const App = () => {
         </ProtectedRoute>
         <Route path="/login" component={Login} />
         <Route component={Login} />
-      </Switch> */}
+      </Switch> 
+      
+      */}
+      </AuctionContext>
+      </UserContext.Provider>
+
 
 
     </div>
