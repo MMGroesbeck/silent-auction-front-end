@@ -15,15 +15,15 @@ function App() {
   return (
     <div className="App">
       <Navigation>
-         <NavItem icon ="🛎">
+         <NavItem icon ="⚙️">
            <DropdownMenu />
          </NavItem>
         </Navigation>
-      <header className="App-header">
-        <h1>
+  
+        {/* <h1>
           The Silent Auction! 
-        </h1>
-        <p>Don't have an account?
+        </h1> */}
+        {/* <p>Don't have an account?
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -32,9 +32,9 @@ function App() {
         >
             Sign up!
         </a>
-        </p>
+        </p> */}
           <Register />
-      </header>
+
     </div>
   );
 }
