@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuctionContext } from '../contexts/AuctionContext'
 import { UserContext } from '../contexts/UserContext';
+import Moment from 'react-moment';
+import * as moment from 'moment';
 
 
 const nowtime = new Date();
@@ -11,7 +13,7 @@ const initialAuction = {
     description: "",
     user_id: 0,
     image_url: "",
-    end_datetime: null
+    end_datetime: ''
 }
 
 
@@ -20,13 +22,13 @@ const AuctionForm = () => {
     const auctions = useContext(AuctionContext);
     const user = useContext(UserContext)
     const [auction, setAuction] = useState(initialAuction)
+    let endtime;
 
     useEffect(() => {
         console.log(auctions.auctionList)
     })
 
     const handleChange = e => {
-        e.persist()
         setAuction({
             ...auction,
             id: (auctions.auctionList.length + 1),
@@ -35,6 +37,16 @@ const AuctionForm = () => {
         })
     }
 
+
+    const setEndTime = hours => {
+        endtime = moment(nowtime).add(hours, 'h').toDate().toISOString()
+        setAuction({
+            ...auction,
+            end_datetime: endtime
+        })
+    }
+
+    console.log(endtime)
     const handleSubmit = e => {
         e.preventDefault();
         auctions.setAuctionList([
@@ -75,9 +87,9 @@ const AuctionForm = () => {
                     value={auction.image_url}
                 />
                 <input
-                    type='number'
+                    type='text'
                     name='end_datetime'
-                    onChange={handleChange}
+                    onChange={setEndTime}
                     placeholder='Length of Auction (in hours)'
                     value={auction.end_datetime}
                 />
