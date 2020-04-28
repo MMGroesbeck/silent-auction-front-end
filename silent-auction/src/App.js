@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
 
 // Components
 import Auctions from './components/Auctions';
@@ -22,35 +22,35 @@ const App = () => {
   const [auctionList, setAuctionList] = useState([])
   const [currentUser, setCurrentUser] = useState({})
 
-  // const getAuctionList = () => {
-  //   axios
-  //     .get('link here')
-  //     .then(res => setAuctionList(res))
-  //     .catch(err => console.log(err))
-  // };
+  const getAuctionList = () => {
+    axios
+      .get('https://silent-auctions.herokuapp.com/api/auctions')
+      .then(res => setAuctionList(res.data))
+      .catch(err => console.log(err))
+  };
 
-  // useEffect(() => {
-  //   getAuctionList();
-  // }, []);
+  useEffect(() => {
+    getAuctionList();
+  }, []);
 
 
   return (
     <div className="App">
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <AuctionContext.Provider value={auctionList}>
-        
+        <AuctionContext.Provider value={{ auctionList, setAuctionList }}>
+        <Link to='/protected/seller'>Form</Link>
             <Navigation>
          <NavItem icon ="🛎">
            <DropdownMenu />
          </NavItem>
         </Navigation>
       <Switch>
-        <ProtectedRoute exact path="/protected/buyer">
+        <Route exact path="/protected/buyer">
           <Auctions auctions={auctionList} />
-        </ProtectedRoute>
-        <ProtectedRoute exact path="/protected/seller">
-          <Auctions auctions={AuctionForm} />
-        </ProtectedRoute>
+        </Route>
+        <Route exact path="/protected/seller">
+          <AuctionForm />
+        </Route>
         <Route path="/login" component={Login} />
         <Route component={Login} />
       </Switch> 

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuctionContext } from '../contexts/AuctionContext'
 
 
 const initialAuction = {
@@ -12,16 +13,17 @@ const initialAuction = {
 
 const AuctionForm = () => {
 // The Seller form for creating an auction
-    const [auction, setAuction] = useState(initialAuction);
+    const auctions = useContext(AuctionContext);
+    const auction = useState(initialAuction)
+
 
     useEffect(() => {
-
+        console.log(auctions)
     })
 
     const handleChange = e => {
-        setAuction({
-            ...auction,
-            [e.target.name]: e.target.value
+        auctions.setAuction({
+
         })
     }
 
@@ -44,6 +46,7 @@ const AuctionForm = () => {
                 <input
                     type='text-area'
                     name='description'
+                    onChange={handleChange}
                     placeholder='description'
                     value={auction.description}
                     />
