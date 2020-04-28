@@ -17,10 +17,16 @@ import { AuctionContext } from './contexts/AuctionContext';
 import './App.css';
 import axios from 'axios';
 
+const initialUser = {
+  id: 1,
+  username: 'michaelb',
+  email: 'test@gmail.com',
+  role: 'seller'
+}
 
 const App = () => {
-  const [auctionList, setAuctionList] = useState([])
-  const [currentUser, setCurrentUser] = useState({})
+  const [auctionList, setAuctionList] = useState()
+  const [currentUser, setCurrentUser] = useState(initialUser)
 
   const getAuctionList = () => {
     axios
