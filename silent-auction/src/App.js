@@ -44,7 +44,6 @@ const App = () => {
            <DropdownMenu />
          </NavItem>
         </Navigation>
-
       <Switch>
         <ProtectedRoute exact path="/protected/buyer">
           <Auctions auctions={auctionList} />
