@@ -22,23 +22,23 @@ const App = () => {
   const [auctionList, setAuctionList] = useState([])
   const [currentUser, setCurrentUser] = useState({})
 
-  const getAuctionList = () => {
-    axios
-      .get('link here')
-      .then(res => setAuctionList(res))
-      .catch(err => console.log(err))
-  };
+  // const getAuctionList = () => {
+  //   axios
+  //     .get('link here')
+  //     .then(res => setAuctionList(res))
+  //     .catch(err => console.log(err))
+  // };
 
-  useEffect(() => {
-    getAuctionList();
-  }, []);
+  // useEffect(() => {
+  //   getAuctionList();
+  // }, []);
 
 
   return (
     <div className="App">
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <AuctionContext value={auctionList}>
-        {/* 
+        <AuctionContext.Provider value={auctionList}>
+        
             <Navigation>
          <NavItem icon ="🛎">
            <DropdownMenu />
@@ -55,8 +55,8 @@ const App = () => {
         <Route component={Login} />
       </Switch> 
       
-      */}
-      </AuctionContext>
+     
+      </AuctionContext.Provider>
       </UserContext.Provider>
 
 
