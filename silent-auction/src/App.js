@@ -8,6 +8,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AuctionForm from './components/AuctionForm';
 import { Navigation, DropdownMenu } from './components/Navigation'
 import { NavItem } from './components/Navigation'
+import Register from './components/Register'
+import AuctionCard from './components/AuctionCard'
 
 // Context
 import { UserContext } from './contexts/UserContext';
@@ -42,29 +44,19 @@ const App = () => {
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <AuctionContext.Provider value={{ auctionList, setAuctionList }}>
-        <Link to='/protected/seller'>Form</Link>
-            <Navigation>
-         <NavItem icon ="🛎">
-           <DropdownMenu />
+      <Navigation>
+         <NavItem icon ="🤫">
+            <DropdownMenu />
          </NavItem>
-        </Navigation>
-      <Switch>
-        <Route exact path="/protected/buyer">
-          <Auctions auctions={auctionList} />
-        </Route>
-        <Route exact path="/protected/seller">
-          <AuctionForm />
-        </Route>
-        <Route path="/login" component={Login} />
-        <Route component={Login} />
-      </Switch> 
-      
-     
-      </AuctionContext.Provider>
-      </UserContext.Provider>
+      </Navigation>
+  
+   <h1> The Silent Auction! </h1>
+   
 
+          {/* <AuctionCard /> */}
+          <Register /> 
+          {/* <Login /> */}
+          {/* <AuctionForm /> */}
 
     </div>
   );
