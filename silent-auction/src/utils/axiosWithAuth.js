@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-const Auth = () => {
-    const token = localStorage.getItem('token');
-
-    return axios.create({
-        baseURL: " ", // add base url:<deployedApp.com/api> 
-        headers: {
-            'Authorization': `${token}`,
-        },
-    });
+export const axiosWithAuth = () => {
+  // returns an "instance" of axios, with preconfigured configs
+  const token = localStorage.getItem('token');
+  return axios.create({
+    headers: {
+      'Authorization': `${token}`
+    },
+    baseURL: "https://silent-auctions.herokuapp.com/"
+  });
 };
-
-export default Auth;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuctionContext } from '../contexts/AuctionContext'
 import { UserContext } from '../contexts/UserContext';
-import Moment from 'react-moment';
 import * as moment from 'moment';
 
 

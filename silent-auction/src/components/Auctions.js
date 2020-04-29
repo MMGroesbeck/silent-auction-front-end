@@ -8,7 +8,7 @@ const Auctions = () => {
   //  The feed of auctions that are on going
   const { control, register, handleSubmit, errors } = useForm()
   const onSubmit = data => { console.log(data) }
-  console.log(watch("username"))  // watch input value by passing the name of it
+  // console.log(watch("username"))  // watch input value by passing the name of it
 
 
   return (
