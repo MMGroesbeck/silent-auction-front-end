@@ -9,7 +9,7 @@ import AuctionForm from './components/AuctionForm';
 import { Navigation, DropdownMenu } from './components/Navigation'
 import { NavItem } from './components/Navigation'
 import Register from './components/Register'
-import  SignUp from './components/ClonedRegister'
+import AuctionCard from './components/AuctionCard'
 
 // Context
 import { UserContext } from './contexts/UserContext';
@@ -53,11 +53,10 @@ const App = () => {
    <h1> The Silent Auction! </h1>
    
 
-    <Login />
-        {/* <SignUp/> */}
-          {/* <Register />  */}
+          {/* <AuctionCard /> */}
+          <Register /> 
           {/* <Login /> */}
-           {/* <AuctionForm /> */}
+          {/* <AuctionForm /> */}
 
     </div>
   );
