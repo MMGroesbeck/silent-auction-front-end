@@ -1,6 +1,25 @@
 
 import React, { useState } from 'react'
+
+
 import axiosWithAuth from '../utils/axiosWithAuth'
+
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import { sizing } from '@material-ui/system';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: 200,
+      },
+    },
+  }));
+
+
+
 
 const Register = () => {
    const [signup, setSignup] = useState({
@@ -8,6 +27,11 @@ const Register = () => {
        password: "",
        email: ""
    })
+
+   const authOption = () => [
+        {key: 1, text: 'Login', value: 1},
+        {key: 2, text: 'Sign-up', value: 2}
+   ]
 
    const onSubmit = () => {
        //   axios call
@@ -18,46 +42,49 @@ const Register = () => {
    const changeHandler = e => {
        setSignup({...signup, [e.target.name]: e.target.value })
    }
+
    
+
    
     return(
-<div>
+<>
         <h3>Register Now!</h3>
         <form >
-            <label>Create a Username: </label>
-            <input 
+            <div>
+            <TextField 
+            style={{ margin: 8 }}
+            fullWidth 
+
+            variant = "outlined"
             name = "username"
-            value = "username"
             type = "text" 
             placeholder = "username"
             onChange = {changeHandler}
             />
-            <br></br>
-            <label>Create a Password: </label>
-            <input 
+          </div>
+            <div>
+            <TextField 
+            variant = "outlined"
             name = "password"
-            value = "password"
             type = "text"
             placeholder = "password"
             onchange = {changeHandler}
             />
-            <br></br>
-            <label>Register with email: </label>
-            <input 
+          </div>
+            <div>
+            <TextField
+            variant = "outlined"
             name = "email"
             vaule = "email"
             type = "text"
             placeholder = "email"
             onchange = {changeHandler}
             />
-            <br></br>
-            <p>Register as: 
-            <button> Buyer </button> or 
-            <button> Seller </button>
-            </p>
-        
+            </div>
+
+            <Button> Buyer </Button> or  <Button> Seller </Button>
         </form>
-</div>
+</>
     )
 }
 export default Register
