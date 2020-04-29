@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
 
 // Components
 import Auctions from './components/Auctions';
@@ -19,15 +19,21 @@ import { AuctionContext } from './contexts/AuctionContext';
 import './App.css';
 import axios from 'axios';
 
+const initialUser = {
+  id: 1,
+  username: 'michaelb',
+  email: 'test@gmail.com',
+  role: 'seller'
+}
 
 const App = () => {
-  const [auctionList, setAuctionList] = useState([])
-  const [currentUser, setCurrentUser] = useState({})
+  const [auctionList, setAuctionList] = useState()
+  const [currentUser, setCurrentUser] = useState(initialUser)
 
   const getAuctionList = () => {
     axios
-      .get('link here')
-      .then(res => setAuctionList(res))
+      .get('https://silent-auctions.herokuapp.com/api/auctions')
+      .then(res => setAuctionList(res.data))
       .catch(err => console.log(err))
   };
 
