@@ -60,8 +60,8 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route component={Login} />
       </Switch> 
-           <AuctionCard />
-          <Register /> 
+           {/* <AuctionCard />
+          <Register />  */}
           {/* <Login /> */}
           {/* <AuctionForm /> */}
       
