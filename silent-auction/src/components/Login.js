@@ -1,10 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { axiosWithAuth } from '../utils/axiosWithAuth'
+
+const initialLogin = {
+    username: '',
+    password: ''
+}
+
 // Test
 const Login = () => {
-
+    const [login, setLogin] = useState(initialLogin)
     const { register, handleSubmit, watch, errors } = useForm()
-    const onSubmit = data => { console.log(data) }
+
+    const onSubmit = (data, e) => {
+        e.preventDefault();
+        axiosWithAuth()
+            .post('/api/users/login', data)
+            .then(res => {
+                localStorage.setItem('token', res.data.payload);
+                this.props.history.push('/protected');
+            })
+            .catch(err => console.log(err))
+    }
+
+    const handleChange = e => {
+        setLogin({
+            ...login,
+            [e.target.name]: e.target.value
+        });
+    };
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -23,6 +48,8 @@ const Login = () => {
                 type='text'
                 name='username'
                 id='username'
+                value={login.username}
+                onChange={handleChange}
                 // defaultValue="test" ref={register}  // register the username input
                 ref={register({ required: true })}  // include the 'required' option
             />
@@ -34,6 +61,8 @@ const Login = () => {
             type='password' 
             name='password' 
             id='password' 
+            value={login.password}
+            onChange={handleChange}
             ref={register({ required: true })}
             /> <br />
 
