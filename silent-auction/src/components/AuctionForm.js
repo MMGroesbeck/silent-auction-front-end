@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuctionContext } from '../contexts/AuctionContext'
 import { UserContext } from '../contexts/UserContext';
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 import * as moment from 'moment';
 
 
@@ -48,16 +49,15 @@ const AuctionForm = () => {
     console.log(endtime)
     const handleSubmit = e => {
         e.preventDefault();
-        auctions.setAuctionList([
-            ...auctions.auctionList,
-            auction
-        ])
-        // axioswithauth
-        // .put(url)
-        // .then(res => {
-        // route to logged in auctionList
-        // })
-        // .catch(err => console.log(err))
+        axiosWithAuth()
+            .post('/api/auctions', auction)
+            .then(res => {
+                auctions.setAuctionList([
+                    ...auctions.auctionList,
+                    auction
+                ])
+            })
+            .catch(err => console.log(err))
     }
 
     return (
