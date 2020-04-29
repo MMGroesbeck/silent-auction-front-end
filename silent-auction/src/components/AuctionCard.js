@@ -52,10 +52,6 @@ export default function RecipeReviewCard() {
   return (
     <Card className={classes.root}>
       <CardHeader
-        // avatar={
-        //   <Avatar aria-label="auction" className={classes.avatar}>
-        //   </Avatar>
-        // }
         title="{Auction Item}"
         subheader="{Auction Length}"
       />
@@ -97,7 +93,6 @@ export default function RecipeReviewCard() {
           ),
         }}
       />
-
         </CardContent>
       </Collapse>
     </Card>
