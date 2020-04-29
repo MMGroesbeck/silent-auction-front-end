@@ -48,7 +48,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Register = () => {
-    const [user, setUser] = useState()
+    // const [user, setUser] = useState()
+
+
     const classes = useStyles();
     const history = useHistory()
     const {register, handleSubmit, errors} = useForm()
@@ -76,7 +78,10 @@ const Register = () => {
        setSignup({...signup, [e.target.name]: e.target.value })
    }
    const handleChange = (event) => {
-    setUser(event.target.user);
+    setSignup({
+      ...signup,
+      [event.target.name]: event.target.value
+    });
   };
 
     return(
@@ -128,8 +133,8 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-          <RadioGroup aria-label="userType" name="userType1" value={user} onChange={handleChange}>
-              <FormControlLabel value="Buyer" control={<Radio />} label="Buyer" />
+          <RadioGroup aria-label="userType" name="userType1" value={signup.userType} onChange={handleChange}>
+              <FormControlLabel value={"Buyer"} control={<Radio />} label="Buyer" />
               <FormControlLabel value="Seller" control={<Radio />} label="Seller" />
          </RadioGroup>
               </Grid>

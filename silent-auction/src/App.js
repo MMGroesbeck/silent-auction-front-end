@@ -53,7 +53,7 @@ const App = () => {
    <h1> The Silent Auction! </h1>
    
 
-          {/* <AuctionCard /> */}
+          <AuctionCard />
           <Register /> 
           {/* <Login /> */}
           {/* <AuctionForm /> */}
