@@ -4,7 +4,7 @@ const Auth = () => {
     const token = localStorage.getItem('token');
 
     return axios.create({
-        baseURL: " ", // add base url:<deployedApp.com/api> 
+        baseURL: "https://silent-auctions.herokuapp.com", 
         headers: {
             'Authorization': `${token}`,
         },

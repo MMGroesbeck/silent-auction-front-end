@@ -1,15 +1,20 @@
-
-
+// import needed functions 
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 
+
+// axios 
 import axiosWithAuth from '../utils/axiosWithAuth'
 
+
+// Material-UI styles 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -17,8 +22,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-
 
 
 
@@ -44,31 +47,38 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
 const Register = () => {
-    const [user, setUser] = React.useState()
+    const [user, setUser] = useState()
     const classes = useStyles();
+    const history = useHistory()
     const {register, handleSubmit, errors} = useForm()
 
     const [signup, setSignup] = useState({
        username: "", 
        password: "",
-       email: ""
+       email: "",
+       userType: ""
    })
 
    const onSubmit = () => {
-       //   axios call
-       //   .then( res => {what is the response})
-       //   .catch()
+         axiosWithAuth()
+         .post("/api/users/register")
+         .then( res => {
+           console.log(res)
+           // localStorage.setItem("token", res.data.token)
+           //  history.push("/dashboard")
+           //  console.log("should be pushed")
+         })
+         .catch(err => {console.log("error with register post: ", err)})
    }
     
    const changeHandler = e => {
        setSignup({...signup, [e.target.name]: e.target.value })
    }
+   const handleChange = (event) => {
+    setUser(event.target.user);
+  };
 
-   
-
-   
     return(
         <Container component="main" maxWidth="xs">
 
@@ -79,7 +89,7 @@ const Register = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -91,9 +101,8 @@ const Register = () => {
                   name="username"
                   autoComplete="username"
                   ref={register({equired: true})}
+                  onChange={changeHandler}
                 />
-             
-
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -119,14 +128,10 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I am a new Seller"
-                />
-               <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I am a new Buyer"
-                />
+          <RadioGroup aria-label="userType" name="userType1" value={user} onChange={handleChange}>
+              <FormControlLabel value="Buyer" control={<Radio />} label="Buyer" />
+              <FormControlLabel value="Seller" control={<Radio />} label="Seller" />
+         </RadioGroup>
               </Grid>
             </Grid>
             <Button
