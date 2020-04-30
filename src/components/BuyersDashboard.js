@@ -6,7 +6,6 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
 
-
 const BuyersDashBoard = () => {
     const [watchedAuctions, setWatchedAuction] = useState([])
     const auctions = useContext(AuctionContext);
@@ -25,8 +24,7 @@ const BuyersDashBoard = () => {
          
         {watchedAuctions.map(auction => {
             console.log(auction)
-            //should be each aucton card
-            //add the save and delete component 
+
         })}
 
        </div>
