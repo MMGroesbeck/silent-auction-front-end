@@ -1,4 +1,7 @@
 import React from 'react';
+
+
+//Styles
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -13,10 +16,20 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-
+import FavoriteIcon from '@material-ui/icons/Favorite'
 import { TextField } from '@material-ui/core';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import CancelIcon from '@material-ui/icons/Cancel';
+
+
+
+//Axios
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+
+
+//Components
+import { useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,18 +57,36 @@ const useStyles = makeStyles((theme) => ({
 export default function RecipeReviewCard() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const { id } = useParams()
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  const deleteBid = () => {
+    axiosWithAuth()
+    .delete(`/api/watching/${id}`)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {console.log("error when deleting: ",err)})
+  }
+
+  const saveBid = () => {
+    
+  }
+
+
+
   return (
     <Card className={classes.root}>
       <CardHeader
-        // avatar={
-        //   <Avatar aria-label="auction" className={classes.avatar}>
-        //   </Avatar>
-        // }
+      action={
+        <IconButton aria-label="settings">
+        <CancelIcon />
+      </IconButton>
+      }
         title="{Auction Item}"
         subheader="{Auction Length}"
       />
@@ -71,6 +102,9 @@ export default function RecipeReviewCard() {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
+      <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -97,7 +131,6 @@ export default function RecipeReviewCard() {
           ),
         }}
       />
-
         </CardContent>
       </Collapse>
     </Card>

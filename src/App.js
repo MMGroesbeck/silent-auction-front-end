@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AuctionForm from './components/AuctionForm';
 import { Navigation, DropdownMenu } from './components/Navigation'
 import { NavItem } from './components/Navigation'
+import AuctionCard from './components/AuctionCard'
 
 // Context
 import { UserContext } from './contexts/UserContext';
@@ -60,12 +61,10 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route component={Login} />
       </Switch> 
-           {/* <AuctionCard />
-          <Register />  */}
+          <AuctionCard />
+          {/* <Register />  */}
           {/* <Login /> */}
           {/* <AuctionForm /> */}
-      
-     
       </AuctionContext.Provider>
       </UserContext.Provider>
 
