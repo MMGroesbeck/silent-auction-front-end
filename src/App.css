@@ -53,6 +53,16 @@
   border-radius: 5px;
   box-shadow: 0 1px 6px -2px #000;
   background-color: #FFF;
-  margin-bottom: 30px;
-  margin: 0 30px;
+  margin: 10px 30px;
+}
+
+.seller_header {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.seller_header_link{
+  margin: 0 10px;
+  color: black;
 }

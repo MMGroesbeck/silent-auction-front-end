@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AuctionContext } from '../contexts/AuctionContext';
 import { UserContext } from '../contexts/UserContext';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 
 const SellersDashboard = () => {
     const [sellerAuctions, setSellerAuctions] = useState([])
@@ -19,7 +19,7 @@ const SellersDashboard = () => {
                 setSellerAuctions(res.data)
             })
             .catch(err => console.log(err))
-    }, []);
+    }, [sellerAuctions]);
 
     const deleteAuction = (auction, e) => {
         e.preventDefault();
@@ -36,7 +36,11 @@ const SellersDashboard = () => {
 
     return (
         <>
-            <h2>Your Auctions:</h2>
+        <div className ='seller_header'>
+        <h2>Your Auctions:</h2>
+        <Link className='seller_header_link' to='/protected/seller'>Create new auction!</Link>
+        </div>
+            
             <div className='seller_cards'>
                 {sellerAuctions.map(auction => {
                     console.log(auction)
