@@ -50,6 +50,9 @@ export const DropdownMenu = () => {
             <DropdownItem 
                 leftIcon={"📝" }>Sign-up!
             </DropdownItem>
+            <DropdownItem 
+                leftIcon={"📋"}>Dashboard
+            </DropdownItem>
         </div>
      </>
     )

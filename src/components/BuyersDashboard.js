@@ -6,7 +6,6 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
 
-
 const BuyersDashBoard = () => {
     const [watchedAuctions, setWatchedAuction] = useState([])
     const auctions = useContext(AuctionContext);

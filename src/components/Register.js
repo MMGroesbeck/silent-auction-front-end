@@ -76,15 +76,12 @@ const Register = () => {
     
 
    const changeHandler = e => {
-       setSignup({...signup, [e.target.name]: e.target.value })
+       setSignup({
+         ...signup, 
+         [e.target.name]: e.target.value 
+        })
    }
 
-  //  const handleChange = (event) => {
-  //   setSignup({
-  //     ...signup,
-  //     [event.target.name]: event.target.value
-  //   });
-  // };
 
 
 
