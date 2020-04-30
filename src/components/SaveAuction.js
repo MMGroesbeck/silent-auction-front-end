@@ -6,7 +6,7 @@ const SavedAuction = ({list}) => {
         <div className="saved-Bids">
             <h3>Saved Bids</h3>
             {list.map(auction => {
-                return // 
+                return 
             })}
         </div>
     )

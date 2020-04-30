@@ -5,16 +5,14 @@ import { useHistory } from 'react-router-dom'
 
 
 // axios 
-import axiosWithAuth from '../utils/axiosWithAuth'
+import { axiosWithAuth } from '../utils/axiosWithAuth'
+import axios from 'axios'
 
 
 // Material-UI styles 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -48,8 +46,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Register = () => {
-    // const [user, setUser] = useState()
-
 
     const classes = useStyles();
     const history = useHistory()
@@ -59,30 +55,39 @@ const Register = () => {
        username: "", 
        password: "",
        email: "",
-       userType: ""
+       role: ""
    })
 
    const onSubmit = () => {
-         axiosWithAuth()
-         .post("/api/users/register")
+            console.log(signup)
+         axios
+         .post("https://silent-auctions.herokuapp.com/api/users/register",
+         signup)
          .then( res => {
            console.log(res)
            // localStorage.setItem("token", res.data.token)
+           //  how do we push onto the right branch 
+           //  if bidder or seller 
            //  history.push("/dashboard")
            //  console.log("should be pushed")
          })
          .catch(err => {console.log("error with register post: ", err)})
    }
     
+
    const changeHandler = e => {
        setSignup({...signup, [e.target.name]: e.target.value })
    }
-   const handleChange = (event) => {
-    setSignup({
-      ...signup,
-      [event.target.name]: event.target.value
-    });
-  };
+
+  //  const handleChange = (event) => {
+  //   setSignup({
+  //     ...signup,
+  //     [event.target.name]: event.target.value
+  //   });
+  // };
+
+
+
 
     return(
         <Container component="main" maxWidth="xs">
@@ -119,6 +124,7 @@ const Register = () => {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  onChange={changeHandler}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -130,14 +136,20 @@ const Register = () => {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={changeHandler}
                 />
               </Grid>
               <Grid item xs={12}>
-          <RadioGroup aria-label="userType" name="userType1" value={signup.userType} onChange={handleChange}>
-              <FormControlLabel value={"Buyer"} control={<Radio />} label="Buyer" />
-              <FormControlLabel value="Seller" control={<Radio />} label="Seller" />
-         </RadioGroup>
-              </Grid>
+              <TextField
+               variant="outlined"
+               required 
+               fullWidth
+               id="role"
+               name="role"
+               label="Bidder or Seller?"
+               onChange={changeHandler}
+               />
+            </Grid>
             </Grid>
             <Button
               type="submit"

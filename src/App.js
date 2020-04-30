@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Link } from 'react-router-dom'
 
+
+
 // Components
 import Auctions from './components/Auctions';
 import Login from './components/Login';
@@ -9,6 +11,8 @@ import AuctionForm from './components/AuctionForm';
 import { Navigation, DropdownMenu } from './components/Navigation'
 import { NavItem } from './components/Navigation'
 import AuctionCard from './components/AuctionCard'
+import  Register  from './components/Register'
+
 
 // Context
 import { UserContext } from './contexts/UserContext';
@@ -61,8 +65,8 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route component={Login} />
       </Switch> 
-          <AuctionCard />
-          {/* <Register />  */}
+          {/* <AuctionCard /> */}
+          <Register /> 
           {/* <Login /> */}
           {/* <AuctionForm /> */}
       </AuctionContext.Provider>
