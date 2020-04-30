@@ -1,14 +1,12 @@
+
+
 form {
+  text-align: right;
   width: 350px;
   margin: 30px auto;
   padding: 30px;
   border: .5px solid gray;
   border-radius: 5px;
-}
-
-#heading {
-  font-size: x-large;
-  margin-bottom: 40px;
 }
 
 input[type='text'], input[type='password'] {
@@ -23,6 +21,7 @@ button {
   background: none;
   border: 1px solid lightgray;
   border-radius: 5px;
+  width: 100%;
 }
 
 button:hover {
@@ -34,4 +33,9 @@ button:hover {
 .error-text {
   color: red;
   font-size: small;
+}
+
+p {
+  line-height: 0;
+  text-align: left;
 }
