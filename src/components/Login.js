@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import { useHistory } from 'react-router-dom'
-import UserContext from '../contexts/UserContext'
+import {UserContext} from '../contexts/UserContext'
 
 const initialLogin = {
     username: '',
@@ -22,8 +22,9 @@ const Login = () => {
             .post('/api/users/login', data)
             .then(res => {
                 console.log(res)
+                user.setCurrentUser(res.data.user)
                 localStorage.setItem('token', res.data.token);
-                push('/protected/seller');
+                push('/protected/dashboard');
             })
             .catch(err => console.log(err))
     }
