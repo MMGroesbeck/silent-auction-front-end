@@ -21,13 +21,14 @@ button {
   padding: 8px 20px;
   font-size: large;
   background: none;
-  border: 1px solid darkblue;
+  border: 1px solid lightgray;
   border-radius: 5px;
 }
 
 button:hover {
-  color: black;
-  background: cornflowerblue
+  color: white;
+  background: rgb(0, 0, 250);
+  cursor: pointer;
 }
 
 .error-text {

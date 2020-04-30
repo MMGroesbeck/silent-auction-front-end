@@ -64,7 +64,7 @@ const App = () => {
           <Register />  */}
           {/* <Login /> */}
           {/* <AuctionForm /> */}
-          <Auctions />
+          <Login />
      
       </AuctionContext.Provider>
       </UserContext.Provider>

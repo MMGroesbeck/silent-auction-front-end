@@ -46,7 +46,7 @@ const Login = () => {
             <label htmlFor="seller">Seller</label>
 
             {/* Username */}<br /><br />
-            <span class='input-field'>
+            <span className='input-field'>
             <label htmlFor='username'>User Name: &nbsp;</label>
             <input
                 type='text'
@@ -62,7 +62,7 @@ const Login = () => {
             {errors.username && <p className="error-text">A user name is required.</p>}
 
             {/* Password */}<br />
-            <span class='input-field'>
+            <span className='input-field'>
             <label htmlFor='password'>Password: &nbsp;</label>
             <input
                 type='password'
@@ -77,7 +77,7 @@ const Login = () => {
             {errors.password && <p className='error-text'>A password is required.</p>}
 
             {/* Email address */}<br />
-            <span class='input-field'>
+            <span className='input-field'>
             <label htmlFor='email'>Email: &nbsp;</label>
             <input
                 type='text'
