@@ -17,6 +17,7 @@ import { AuctionContext } from './contexts/AuctionContext';
 
 import './App.css';
 import axios from 'axios';
+import SellerDash from './components/SellersDashboard';
 
 const initialUser = {
   id: 1,
@@ -45,6 +46,7 @@ const App = () => {
     <div className="App">
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <AuctionContext.Provider value={{ auctionList, setAuctionList }}>
+          <SellerDash/>
         <Link to='/login'>Login</Link>
             <Navigation>
          <NavItem icon ="🛎">
