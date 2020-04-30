@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
-
-const initialLogin = {
-    username: '',
-    password: ''
-}
+import './login.css'
 
 // Test
 const Login = () => {
+    // 'handleSubmit' will validate your inputs before invoking 'onSubmit'
+    // Default data
+    const initialLogin = { username: '', password: '', email: '' }
+
     const [login, setLogin] = useState(initialLogin)
     const { register, handleSubmit, errors } = useForm()
 
+    // handle form submissions
     const onSubmit = (data, e) => {
         e.preventDefault();
         axiosWithAuth()
@@ -23,6 +24,7 @@ const Login = () => {
             .catch(err => console.log(err))
     }
 
+    // handle changes in data on the form
     const handleChange = e => {
         setLogin({
             ...login,
@@ -30,20 +32,22 @@ const Login = () => {
         });
     };
 
-
+    // create and return the form
     return (
+        // Custom Login form
         <form onSubmit={handleSubmit(onSubmit)}>
-            {/* // 'handleSubmit' will validate your inputs before invoking 'onSubmit' */}
-
-            <p>Login as Buyer or Seller</p>
+            <p id='heading'>Login as Bidder or Seller</p>
+            {/* Bidder option */}
             <input type="radio" id="buyer" name="client" value="buyer" />
-            <label htmlFor="buyer">Buyer</label>&nbsp;
+            <label htmlFor="buyer">Bidder</label>&nbsp;&nbsp;
 
+            {/* Seller option */}
             <input type="radio" id="seller" name="client" value="seller" />
-            <label htmlFor="seller">Seller</label><br /><br />
+            <label htmlFor="seller">Seller</label>
 
+            {/* Username */}<br /><br />
+            <span class='input-field'>
             <label htmlFor='username'>User Name: &nbsp;</label>
-            {/* Insert form validation for username control */}
             <input
                 type='text'
                 name='username'
@@ -53,34 +57,41 @@ const Login = () => {
                 // defaultValue="test" ref={register}  // register the username input
                 ref={register({ required: true })}  // include the 'required' option
             />
-            <br />
-            {errors.username && <span>A user name is required.</span>}<br />
+            </span>
+            {/* Display username errors */}<br />
+            {errors.username && <p className="error-text">A user name is required.</p>}
 
+            {/* Password */}<br />
+            <span class='input-field'>
             <label htmlFor='password'>Password: &nbsp;</label>
-            <input 
-            type='password' 
-            name='password' 
-            id='password' 
-            value={login.password}
-            onChange={handleChange}
-            ref={register({ required: true })}
-            /> <br />
+            <input
+                type='password'
+                name='password'
+                id='password'
+                value={login.password}
+                onChange={handleChange}
+                ref={register({ required: true })}
+            />
+            </span>
+            {/* Display password errors */}<br />
+            {errors.password && <p className='error-text'>A password is required.</p>}
 
-            {errors.password && <span>A password is required.</span>}<br />
-             <br />
-
+            {/* Email address */}<br />
+            <span class='input-field'>
             <label htmlFor='email'>Email: &nbsp;</label>
-            <input 
-            type='text' 
-            name='email' 
-            id='email' 
-            ref={register({ required: true })}
-            /> <br />
-            {errors.email && <span>Please provide a valid email address.</span>}<br />
-            <br /> <br />
+            <input
+                type='text'
+                name='email'
+                id='email'
+                ref={register({ required: true })}
+            /> 
+            </span>
+            {/* Display email address errors */}<br />
+            {errors.email && <p className='error-text'>Please provide a valid email address.</p>}
 
+            {/* Submit button */}<br /> <br />
             <button type='submit'>Log In</button>
-        </form>
+        </form >
     );
 }
 
