@@ -1,0 +1,36 @@
+form {
+    width: 350px;
+    margin: 30px auto;
+    padding: 30px;
+    border: .5px solid gray;
+    border-radius: 5px;
+  }
+  
+  #heading {
+    font-size: x-large;
+    margin-bottom: 40px;
+  }
+  
+  input[type='text'], input[type='password'] {
+    float: right;
+    width: 70%;
+    font-size: large;
+  }
+  
+  button {
+    padding: 8px 20px;
+    font-size: large;
+    background: none;
+    border: 1px solid darkblue;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    color: black;
+    background: cornflowerblue
+  }
+  
+  .error-text {
+    color: red;
+    font-size: small;
+  }

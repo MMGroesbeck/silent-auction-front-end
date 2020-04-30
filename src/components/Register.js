@@ -107,7 +107,7 @@ const Register = () => {
                   label="username"
                   name="username"
                   autoComplete="username"
-                  ref={register({equired: true})}
+                  ref={register({required: true})}
                   onChange={changeHandler}
                 />
               </Grid>
