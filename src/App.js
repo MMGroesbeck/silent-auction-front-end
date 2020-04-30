@@ -62,10 +62,10 @@ const App = () => {
         <Route exact path="/protected/seller">
           <AuctionForm />
         </Route>
-        <Route exact path="/login" component={Login} />
-        <Route component={Login} />
+        {/* <Route exact path="/login" component={Login} />
+        <Route component={Login} /> */}
       </Switch> 
-          {/* <AuctionCard /> */}
+          <AuctionCard />
           <Register /> 
           {/* <Login /> */}
           {/* <AuctionForm /> */}

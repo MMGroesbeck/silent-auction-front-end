@@ -19,8 +19,7 @@ const SavedAuction = ({list}) => {
                 <div className="feed-button">
                 <Link to="/"> This is the Auction Feed </Link> 
                 </div>
-               
-
         </div>
     )
 }
+export default SavedAuction

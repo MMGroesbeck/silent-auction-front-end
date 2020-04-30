@@ -24,8 +24,7 @@ const BuyersDashBoard = () => {
          
         {watchedAuctions.map(auction => {
             console.log(auction)
-            //should be each aucton card
-            //add the save and delete component 
+
         })}
 
        </div>
