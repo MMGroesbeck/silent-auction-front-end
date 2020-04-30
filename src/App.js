@@ -54,10 +54,6 @@ const App = () => {
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <AuctionContext.Provider value={{ auctionList, setAuctionList }}>
 
-          {/* <Link to='/login'>Login</Link>
-          <Link to='/protected/dashboard'>Dashboard</Link>
-          <Link to='/protected/seller'>Seller</Link> */}
-
           <Navigation>
             <NavItem icon="🛎">
               <DropdownMenu />
