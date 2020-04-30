@@ -3,6 +3,7 @@ import { AuctionContext } from '../contexts/AuctionContext'
 import { UserContext } from '../contexts/UserContext';
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import * as moment from 'moment';
+import { useHistory } from 'react-router-dom';
 
 
 const nowtime = new Date();
@@ -22,6 +23,7 @@ const AuctionForm = () => {
     const auctions = useContext(AuctionContext);
     const user = useContext(UserContext)
     const [auction, setAuction] = useState(initialAuction)
+    const { push } = useHistory();
     let endtime;
 
     useEffect(() => {
@@ -52,10 +54,12 @@ const AuctionForm = () => {
         axiosWithAuth()
             .post('/api/auctions', auction)
             .then(res => {
+                console.log(res)
                 auctions.setAuctionList([
                     ...auctions.auctionList,
                     auction
                 ])
+                push('/protected/dashboard')
             })
             .catch(err => console.log(err))
     }

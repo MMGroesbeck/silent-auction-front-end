@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
+import { useHistory } from 'react-router-dom'
+import UserContext from '../contexts/UserContext'
 
 const initialLogin = {
     username: '',
@@ -10,15 +12,18 @@ const initialLogin = {
 // Test
 const Login = () => {
     const [login, setLogin] = useState(initialLogin)
-    const { register, handleSubmit, watch, errors } = useForm()
+    const { register, handleSubmit, errors } = useForm()
+    const { push } = useHistory();
+    const user = useContext(UserContext)
 
     const onSubmit = (data, e) => {
         e.preventDefault();
         axiosWithAuth()
             .post('/api/users/login', data)
             .then(res => {
-                localStorage.setItem('token', res.data.payload);
-                this.props.history.push('/protected');
+                console.log(res)
+                localStorage.setItem('token', res.data.token);
+                push('/protected/seller');
             })
             .catch(err => console.log(err))
     }
@@ -54,30 +59,31 @@ const Login = () => {
                 ref={register({ required: true })}  // include the 'required' option
             />
             <br />
+
+
+            <label htmlFor='email'>Email: &nbsp;</label>
+            <input
+                type='text'
+                name='email'
+                id='email'
+                ref={register({ required: true })}
+            /> 
+            {errors.email && <span>Please provide a valid email address.</span>}<br />
+
             {errors.username && <span>A user name is required.</span>}<br />
 
             <label htmlFor='password'>Password: &nbsp;</label>
-            <input 
-            type='password' 
-            name='password' 
-            id='password' 
-            value={login.password}
-            onChange={handleChange}
-            ref={register({ required: true })}
+            <input
+                type='password'
+                name='password'
+                id='password'
+                value={login.password}
+                onChange={handleChange}
+                ref={register({ required: true })}
             /> <br />
 
             {errors.password && <span>A password is required.</span>}<br />
-             <br />
-
-            <label htmlFor='email'>Email: &nbsp;</label>
-            <input 
-            type='text' 
-            name='email' 
-            id='email' 
-            ref={register({ required: true })}
-            /> <br />
-            {errors.email && <span>Please provide a valid email address.</span>}<br />
-            <br /> <br />
+            <br />
 
             <button type='submit'>Log In</button>
         </form>
@@ -85,27 +91,3 @@ const Login = () => {
 }
 
 export default Login
-
-
-// LOGIN PAGE
-
-// { USEFORM } FROM 'REACT-HOOK-FORM'? (FAST + EASY VALIDATION!)
-
-// <FORM>
-// LOGIN AS BUYER OR SELLER
-// USERNAME 
-// PASSWORD
-//EMAIL
-// 'LOG IN' BUTTON
-// </FORM>
-
-// EXAMPLE OF VALIDATION WITH USEFORM: 
-// {errors.username && errors.username.type === "minLength" && (
-//    <p> This field requires a minimum length of 3 characters. </p> 
-// )}
-
-// EXAMPLE OF VALIDATION WITH USEFORM: 
-// {errors.username && errors.username.type === "required" && (
-//    <p> This field requires a minimum length of 3 characters. </p> 
-// )}
-
