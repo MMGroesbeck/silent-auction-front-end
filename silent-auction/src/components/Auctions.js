@@ -1,72 +1,54 @@
+import React, { useState, useEffect } from 'react'
+import AuctionForm from './AuctionForm'
+import axios from 'axios'
 
-import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-// import 'materialize-css';
-import { Button, Card, Row, Col, TextInput } from 'react-materialize';// import {DevTool} from 'react-hook-form-devtools'
-import '../index.css'
-
+const auctionsList =  'https://silent-auctions.herokuapp.com/api/auctions'
 const Auctions = () => {
-  //  The feed of auctions that are on going
-  const { control, register, handleSubmit, errors } = useForm()
-  const onSubmit = data => { console.log(data) }
-  // console.log(watch("username"))  // watch input value by passing the name of it
+  // placeholder data
+  const auctionListsss = [
+    {
+      id: 1,
+      name: "Fun",
+      description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis ad vel, voluptatum perspiciatis saepe rem, officia illo cumque iusto omnis enim, deserunt alias dolores voluptates possimus velit sit nesciunt commodi.",
+      user_id: 1001,
+      image_url: "",
+      end_datetime: '1:22pm'
+    },
+    {
+      id: 2,
+      name: "More Fun",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam provident doloremque recusandae temporibus quas nemo aliquid officia. In quidem aut reiciendis sint, autem nam veritatis soluta possimus tempore, molestiae provident!",
+      user_id: 2002,
+      image_url: "",
+      end_datetime: '4:22pm'
+    },
+    {
+      id: 3,
+      name: "The Most Fun",
+      description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic aliquam architecto blanditiis, quas doloribus sit autem nihil nostrum veniam nesciunt voluptatum dolorum animi aperiam nulla quos iure sed deleniti earum?",
+      user_id: 3003,
+      image_url: "",
+      end_datetime: '7:22pm'
+    },
+  ]
 
+
+  // Axios call
+  const [auctions, setAuctions] = useState({})
+
+  axios
+    .get(auctionsList)
+    .then((response) => {
+      console.log(response)
+      // setValues(response)
+    })
+    .catch((err) => {
+      console.error(err)
+    })
 
   return (
-    <>
-      <h1>The Silent Auction!</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Auctions</h1>
-        <input
-          type='string'
-          name='username'
-          placeholder='User Name*'
-          defaultValue='Harvey'
-          ref={register({ required: true, min:2 })}
-        />&nbsp;
-        {errors.username && <span className='error-text'>User Name is required.</span>}<br />
-
-        <input
-          type='string'
-          name='password'
-          placeholder='Password*'
-          defaultValue=''
-          ref={register({ required: true,  })}
-        />&nbsp;
-        {errors.password && <span className='error-text'>Password is required.</span>}<br />
-
-        <input
-          type='string'
-          name='email'
-          placeholder='Email Address*'
-          defaultValue=''
-          ref={register({ required: true })}
-        />&nbsp;
-        {errors.email && <span className='error-text'>Email is required.</span>}<br />
-        <br />
-
-        <input
-          type="radio"
-          id="bidder"
-          name="role"
-          value="bidder"
-          ref={register}
-        />
-        <label htmlFor="bidder">Bidder</label>&nbsp;
-
-      <input
-          type="radio"
-          id="seller"
-          name="role"
-          value="seller"
-          checked
-          ref={register}
-        />
-        <label htmlFor="seller">Seller</label><br /><br />
-<input type ='submit' value='Submit' />
-      </form>
-
-    </>
+    null
   )
 }
+
 export default Auctions

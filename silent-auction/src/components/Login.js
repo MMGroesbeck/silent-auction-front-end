@@ -10,7 +10,7 @@ const initialLogin = {
 // Test
 const Login = () => {
     const [login, setLogin] = useState(initialLogin)
-    const { register, handleSubmit, watch, errors } = useForm()
+    const { register, handleSubmit, errors } = useForm()
 
     const onSubmit = (data, e) => {
         e.preventDefault();
