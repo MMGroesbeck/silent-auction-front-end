@@ -9,6 +9,8 @@ import AuctionForm from './components/AuctionForm';
 import { Navigation, DropdownMenu } from './components/Navigation'
 import { NavItem } from './components/Navigation'
 import AuctionCard from './components/AuctionCard'
+import SellersDashboard from './components/SellersDashboard';
+import UpdateAuction from './components/UpdateAuction';
 
 // Context
 import { UserContext } from './contexts/UserContext';
@@ -17,7 +19,7 @@ import { AuctionContext } from './contexts/AuctionContext';
 
 import './App.css';
 import axios from 'axios';
-import SellerDash from './components/SellersDashboard';
+
 
 const initialUser = {
   id: 1,
@@ -46,31 +48,29 @@ const App = () => {
     <div className="App">
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <AuctionContext.Provider value={{ auctionList, setAuctionList }}>
-          <SellerDash/>
-        <Link to='/login'>Login</Link>
-            <Navigation>
-         <NavItem icon ="🛎">
-           <DropdownMenu />
-         </NavItem>
-        </Navigation>
-      <Switch>
-        <Route exact path="/protected/buyer">
-          <Auctions auctions={auctionList} />
-        </Route>
-        <Route exact path="/protected/seller">
-          <AuctionForm />
-        </Route>
-        <Route exact path="/login" component={Login} />
-        <Route component={Login} />
-      </Switch> 
-          <AuctionCard />
-          {/* <Register />  */}
-          {/* <Login /> */}
-          {/* <AuctionForm /> */}
-      </AuctionContext.Provider>
+
+          <Link to='/login'>Login</Link>
+          <Link to='/protected/dashboard'>Dashboard</Link>
+          <Link to='/protected/seller'>Seller</Link>
+          <Navigation>
+            <NavItem icon="🛎">
+              <DropdownMenu />
+            </NavItem>
+          </Navigation>
+          <Switch>
+            <ProtectedRoute exact path='/protected/seller' component={AuctionForm} />
+            <ProtectedRoute exact path='/protected/dashboard'>
+              <SellersDashboard />
+            </ProtectedRoute>
+            <ProtectedRoute exact path='/protected/update-auction/:id' component={UpdateAuction} />
+            <Route exact path="/login" component={Login} />
+            <Route component={Login} />
+
+
+          </Switch>
+
+        </AuctionContext.Provider>
       </UserContext.Provider>
-
-
     </div>
   );
 }
