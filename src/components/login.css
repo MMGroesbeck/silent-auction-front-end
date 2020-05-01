@@ -1,3 +1,5 @@
+
+
 form {
   text-align: right;
   width: 350px;
@@ -14,19 +16,18 @@ input[type='text'], input[type='password'] {
 }
 
 button {
-  padding: 10px 20px;
-  /* font-size: large; */
-  text-transform: capitalize;
-  color: white;
-  background: rgba(0, 0, 255, 0.7);
+  padding: 8px 20px;
+  font-size: large;
+  background: none;
   border: 1px solid lightgray;
   border-radius: 5px;
   width: 100%;
 }
 
 button:hover {
+  color: white;
+  background: rgb(0, 0, 250);
   cursor: pointer;
-  background: rgb(0, 0, 200);
 }
 
 .error-text {
@@ -37,10 +38,4 @@ button:hover {
 p {
   line-height: 0;
   text-align: left;
-}
-
-#heading {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 1.5rem;
 }
