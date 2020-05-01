@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import { useHistory } from 'react-router-dom'
-import UserContext from '../contexts/UserContext'
+import { UserContext } from '../contexts/UserContext'
 
 const initialLogin = {
     username: '',
@@ -41,7 +41,7 @@ const Login = () => {
             {/* // 'handleSubmit' will validate your inputs before invoking 'onSubmit' */}
 
             <p>Login as Buyer or Seller</p>
-            <input type="radio" id="buyer" name="client" value="buyer" />
+            <input type="radio" id="bidder" name="client" value="bidder" />
             <label htmlFor="buyer">Buyer</label>&nbsp;
 
             <input type="radio" id="seller" name="client" value="seller" />

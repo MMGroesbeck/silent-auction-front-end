@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 //Styles
@@ -24,11 +24,14 @@ import CancelIcon from '@material-ui/icons/Cancel';
 
 //Axios
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axios from 'axios'
 
 
 //Components
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
+import { AuctionContext } from '../contexts/AuctionContext';
+import { UserContext } from '../contexts/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,41 +55,61 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
 }));
+  // name: "",
+  // description: "",
+  // user_id: 0,
+  // image_url: "",
+  // end_datetime: ''
 
-export default function RecipeReviewCard() {
+export default function AuctionCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const {name} = props.auction
   const { id } = useParams()
+  const { push } = useHistory()
 
+  console.log(props, "$$$$$")
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const deleteBid = () => {
+
+  const saveAuction = (props,  e) => {
     axiosWithAuth()
-    .delete(`/api/watching/${id}`)
+    .post(`/api/watching/${id}`)
     .then(res => {
       console.log(res)
+    })
+    .catch(err => console.log(err))
+  }
+
+
+
+  const deleteBid = (props, e) => {
+    e.preventDefault()
+    console.log(props.id)
+    axiosWithAuth()
+    .delete(`api/watching/${props.id}`)
+    .then(res => {
+      console.log(res)
+      push('/protected/dashboard')
     })
     .catch(err => {console.log("error when deleting: ",err)})
   }
 
-  const saveBid = () => {
-    
-  }
 
-
-
+      
   return (
+
     <Card className={classes.root}>
       <CardHeader
       action={
         <IconButton aria-label="settings">
-        <CancelIcon />
+        <CancelIcon onClick={(e) => deleteBid(props, e)}/>
       </IconButton>
       }
-        title="{Auction Item}"
+        title={name}
         subheader="{Auction Length}"
       />
       <CardMedia
@@ -102,7 +125,7 @@ export default function RecipeReviewCard() {
       </CardContent>
       <CardActions disableSpacing>
       <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <FavoriteIcon  onClick={(e) => saveAuction(props, e)}/> 
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
@@ -127,11 +150,13 @@ export default function RecipeReviewCard() {
             <InputAdornment position="start">
               <AttachMoneyIcon />
             </InputAdornment>
-          ),
+          )
         }}
       />
         </CardContent>
       </Collapse>
     </Card>
-  );
-}
+    );
+  }
+  
+  
