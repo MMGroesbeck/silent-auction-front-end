@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -45,13 +46,26 @@ export const DropdownMenu = () => {
         <>
         <div className = "dropdown">
             <DropdownItem
-                leftIcon = {"🔑"} >Login
+                leftIcon = {"🔑"} >
+                    <Link to='/login'>
+                    Login
+                    </Link>
             </DropdownItem>
             <DropdownItem 
-                leftIcon={"📝" }>Sign-up!
+                leftIcon={"📝" }>
+                    <Link to='/register'>
+                        Sign-up!
+                        </Link>
             </DropdownItem>
             <DropdownItem 
-                leftIcon={"📋"}>Dashboard
+                leftIcon={"📋"}><Link to='/protected/dashboard'>
+                    Dashboard
+                    </Link>
+            </DropdownItem>
+            <DropdownItem 
+                leftIcon={"📋"}><Link to='/'>
+                    Home
+                    </Link>
             </DropdownItem>
         </div>
      </>

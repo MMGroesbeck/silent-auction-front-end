@@ -17,12 +17,16 @@ const Auctions = () => {
       })
   }, [])
   return (
-    <div className='auction-cards'>
-      {
-       Array.from(auctions).map(auction => {
-          return <Card props = {auction}/>
-        })
-      }
+    <div>
+      <h1>Welcome to the Silent Auction!</h1>
+      <h2>Auctions Currently Up:</h2>
+      <div className='auction-cards'>
+        {
+          Array.from(auctions).map(auction => {
+            return <Card props={auction} />
+          })
+        }
+      </div>
     </div>
   )
 }
