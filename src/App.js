@@ -59,8 +59,6 @@ const App = () => {
               <DropdownMenu />
             </NavItem>
           </Navigation>
-{/* Place the test here */}
-<Login />
           <Switch>
             <ProtectedRoute exact path='/protected/seller' component={AuctionForm} />
             <ProtectedRoute exact path='/protected/dashboard'>
