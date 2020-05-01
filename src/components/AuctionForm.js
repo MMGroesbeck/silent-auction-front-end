@@ -27,6 +27,7 @@ const AuctionForm = () => {
     const { push } = useHistory();
     let endtime;
 
+    
     useEffect(() => {
         console.log(auctions.auctionList)
     })
