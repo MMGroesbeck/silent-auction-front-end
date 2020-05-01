@@ -1,0 +1,24 @@
+/* This is the stylesheet for Cards.js */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 10px;
+  width: 255px;
+}
+
+.name-id {
+  display:flex;
+  justify-content: space-evenly;
+  padding: 0;
+  margin-bottom: 10px;
+  background: chocolate;
+  color: white;
+}
+
+img {
+  height: 100%;
+  border-radius: 5px;
+}
