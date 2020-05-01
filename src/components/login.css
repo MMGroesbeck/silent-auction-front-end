@@ -1,3 +1,5 @@
+/* This is the stylesheet for Login.js */
+
 form {
   text-align: right;
   width: 350px;
@@ -36,4 +38,27 @@ button:hover {
 p {
   line-height: 0;
   text-align: left;
+
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  padding: 10px;
+  width: 255px;
+}
+
+.name-id {
+  display:flex;
+  justify-content: space-evenly;
+  padding: 0;
+  margin-bottom: 10px;
+  background: chocolate;
+  color: white;
+}
+
+img {
+  height: 100%;
+
 }

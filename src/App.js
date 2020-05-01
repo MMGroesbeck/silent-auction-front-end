@@ -65,7 +65,6 @@ const App = () => {
               <DropdownMenu />
             </NavItem>
           </Navigation>
-
           <Switch>
             <ProtectedRoute exact path='/protected/seller' component={AuctionForm} />
             <ProtectedRoute exact path='/protected/dashboard'>
