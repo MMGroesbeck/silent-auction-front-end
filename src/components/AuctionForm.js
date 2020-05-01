@@ -14,7 +14,8 @@ const initialAuction = {
     description: "",
     user_id: 0,
     image_url: "",
-    end_datetime: ''
+    end_datetime: '',
+    
 }
 
 
