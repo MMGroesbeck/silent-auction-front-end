@@ -15,10 +15,10 @@ const SellersDashboard = () => {
             .get('/api/auctions/seller')
             .then(res => {
                 console.log(res)
-                setSellerAuctions(res.data)
+                auctions.setAuctionList(res.data)
             })
             .catch(err => console.log(err))
-    }, [sellerAuctions]);
+    }, [auctions.auctionList]);
 
     const deleteAuction = (auction, e) => {
         e.preventDefault();
@@ -26,8 +26,8 @@ const SellersDashboard = () => {
             .delete(`/api/auctions/${auction.id}`)
             .then(res => {
                 console.log('deleted', res)
-                const newAuctions = sellerAuctions.filter(a => `${a.id}` !== res.data.id)
-                setSellerAuctions(newAuctions)
+                const newAuctions = auctions.auctionList.filter(a => `${a.id}` !== res.data.id)
+                auctions.setAuctionList(newAuctions)
                 push('/protected/dashboard')
             })
             .catch(err => console.log(err))
@@ -41,7 +41,7 @@ const SellersDashboard = () => {
         </div>
             
             <div className='seller_cards'>
-                {sellerAuctions.map(auction => {
+                {auctions.auctionList.map(auction => {
                     console.log(auction)
                     return (
                         <div className='seller_card' key={auction.id}>
