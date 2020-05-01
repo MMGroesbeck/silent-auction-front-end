@@ -8,9 +8,17 @@ import './login.css'
 
 
 const initialLogin = {
-    username: '',
-    password: ''
+    name: '',
+    password: '',
+    email: ''
 }
+
+// Error prompts for each login field
+const prompt = {
+    name:'A user name of 5 or more characters is required.',
+    email:'Please provide a valid email address.',
+    password:'A password of 10 or more characters is required.'
+}   
 
 // Test
 const Login = () => {
@@ -33,68 +41,60 @@ const Login = () => {
     }
 
     const handleChange = e => {
+        const { name, value } = e.target
         setLogin({
             ...login,
-            [e.target.name]: e.target.value
+            [name]: value
         });
     };
 
 
     return (
-            <form onSubmit={handleSubmit(onSubmit)}>
-                {/* // 'handleSubmit' will validate your inputs before invoking 'onSubmit' */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+        {/* 'handleSubmit' will validate your inputs before invoking 'onSubmit' */}
 
-                <p id='heading'>Login</p>
+            <p id='heading'>Login</p>
 
+            {/* Username */}
+            <label htmlFor='name'>User Name: &nbsp;</label>
+            <input
+                type='text'
+                name='name'
+                id='name'
+                value={login.name}
+                onChange={handleChange}
+                ref={register({ required: true, minLength: 5 })} // Name must be at least 5 chars
+            />
+            {/* Display username errors */}
+            <p>{errors.name && <span className="error-text">{prompt.name}</span>}&nbsp;</p>
 
-                {/* Username */}<br /><br />
-                <span class='input-field'>
-                    <label htmlFor='username'>User Name: &nbsp;</label>
-                    <input
-                        type='text'
-                        name='username'
-                        id='username'
-                        value={login.username}
-                        onChange={handleChange}
-                        // defaultValue="test" ref={register}  // register the username input
-                        ref={register({ required: true })}  // include the 'required' option
-                    />
-                </span>
-                {/* Display username errors */}<br />
-                {errors.username && <p className="error-text">A user name is required.</p>}
+            {/* Email address */}
+            <label htmlFor='email'>Email: &nbsp;</label>
+            <input
+                type='text'
+                name='email'
+                id='email'
+                ref={register({ required: true })}
+            />
+            {/* Display email address errors */}
+            <p>{errors.email && <span className='error-text'>{prompt.email}</span>}&nbsp;</p>
 
+            {/* Password */}
+            <label htmlFor='password'>Password: &nbsp;</label>
+            <input
+                type='password'
+                name='password'
+                id='password'
+                value={login.password}
+                onChange={handleChange}
+                ref={register({ required: true, minLength: 10 })} // Password requires 10+ chars
+            />
+            {/* Display password errors */}
+            <p>{errors.password && <span className='error-text'>{prompt.password}</span>}&nbsp;</p>
 
-                {/* Email address */}<br />
-                <span class='input-field'>
-                    <label htmlFor='email'>Email: &nbsp;</label>
-                    <input
-                        type='text'
-                        name='email'
-                        id='email'
-                        ref={register({ required: true })}
-                    />
-                </span>
-                {/* Display email address errors */}<br />
-                {errors.email && <p className='error-text'>Please provide a valid email address.</p>}
-
-                {/* Password */}<br />
-                <span class='input-field'>
-                    <label htmlFor='password'>Password: &nbsp;</label>
-                    <input
-                        type='password'
-                        name='password'
-                        id='password'
-                        value={login.password}
-                        onChange={handleChange}
-                        ref={register({ required: true })}
-                    />
-                </span>
-                {/* Display password errors */}<br />
-                {errors.password && <p className='error-text'>A password is required.</p>}
-
-                {/* Submit button */}<br /> <br />
-                <button type='submit'>Log In</button>
-            </form>
+            {/* Submit button */}
+            <button type='submit'>LOG IN</button>
+        </form>
     );
 }
 
