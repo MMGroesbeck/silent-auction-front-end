@@ -71,7 +71,8 @@ const App = () => {
               <Dashboard />
             </ProtectedRoute>
             <ProtectedRoute exact path='/protected/update-auction/:id' component={UpdateAuction} />
-            <Route exact path ='/' component={Register} />
+            <Route exact path ='/' component={Auctions} />
+            <Route exect path='/register' component={Register} />
             <Route exact path="/login" component={Login} />
 
           </Switch>
