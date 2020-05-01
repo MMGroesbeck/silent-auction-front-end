@@ -65,11 +65,8 @@ const Register = () => {
          signup)
          .then( res => {
            console.log(res)
-           // localStorage.setItem("token", res.data.token)
-           //  how do we push onto the right branch 
-           //  if bidder or seller 
-           //  history.push("/dashboard")
-           //  console.log("should be pushed")
+           localStorage.setItem("token", res.data.token)
+           history.push("/dashboard")
          })
          .catch(err => {console.log("error with register post: ", err)})
    }

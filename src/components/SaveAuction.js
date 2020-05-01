@@ -1,24 +1,20 @@
-import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+
 
 const SavedAuction = ({list}) => {
+console.log(list)
+
     return(
-        <div className="saved-Bids">
-            <h3>Saved Bids</h3>
-            {list.map(auction => {
-                return (
-                    <NavLink
-                        to={`/api/bidders/${auction.id}`}
-                        key={auction.id}
-                        activeClassName="saved-active"
-                    >
-                        <span className="saved-auction">{auction.title}</span>
-                    </NavLink>
+        <div className="saved-list">
+            <h3>Saved Auctions</h3>
+            {list.map(auction =>{
+                return(
+                    <div>
+                        {auction}
+                    </div>
                 )
             })}
-                <div className="feed-button">
-                <Link to="/"> This is the Auction Feed </Link> 
-                </div>
+            
         </div>
     )
 }
