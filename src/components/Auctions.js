@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import './auctions.css'
 import Card from './Card'
 import axios from 'axios'
 const auctionsList = 'https://silent-auctions.herokuapp.com/api/auctions'
@@ -16,13 +17,13 @@ const Auctions = () => {
       })
   }, [])
   return (
-    <>
+    <div className='auction-cards'>
       {
        Array.from(auctions).map(auction => {
           return <Card props = {auction}/>
         })
       }
-    </>
+    </div>
   )
 }
 export default Auctions

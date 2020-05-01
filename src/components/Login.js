@@ -15,10 +15,10 @@ const initialLogin = {
 
 // Error prompts for each login field
 const prompt = {
-    name:'A user name of 5 or more characters is required.',
-    email:'Please provide a valid email address.',
-    password:'A password of 10 or more characters is required.'
-}   
+    name: 'A user name of 5 or more characters is required.',
+    email: 'Please provide a valid email address.',
+    password: 'A password of 10 or more characters is required.'
+}
 
 // Test
 const Login = () => {
@@ -51,7 +51,7 @@ const Login = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-        {/* 'handleSubmit' will validate your inputs before invoking 'onSubmit' */}
+            {/* 'handleSubmit' will validate your inputs before invoking 'onSubmit' */}
 
             <p id='heading'>Login</p>
 
@@ -74,7 +74,19 @@ const Login = () => {
                 type='text'
                 name='email'
                 id='email'
-                ref={register({ required: true })}
+                // ref={register({ required: true })}
+
+
+                ref={register({
+                    required: "Required",
+                    pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                        message: "invalid email address"
+                    }
+                })}
+
+
+
             />
             {/* Display email address errors */}
             <p>{errors.email && <span className='error-text'>{prompt.email}</span>}&nbsp;</p>
@@ -99,3 +111,11 @@ const Login = () => {
 }
 
 export default Login
+
+// validation for an email address
+
+// if (!values.email) {
+//     errors.email = 'Email address is required'
+//   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+//     errors.email = 'Email address is invalid'
+//   }
