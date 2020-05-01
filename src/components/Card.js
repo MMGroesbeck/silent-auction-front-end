@@ -47,7 +47,9 @@ const Card = (props) => {
         <span>User ID: {user_id}</span><br />
       </main>
     </div>
+
   )
 }
 
 export default Card
+
