@@ -15,7 +15,7 @@ const Card = (props) => {
       <div>
         <h1>{name}</h1>
         <img src={image} />
-        <p>Mass: {description}</p>
+        <p>Mass: {props.description}</p>
       </div>
   )
 }
