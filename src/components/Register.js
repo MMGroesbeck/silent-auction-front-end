@@ -1,7 +1,7 @@
 // import needed functions 
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 
 // axios 
@@ -13,7 +13,7 @@ import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -104,7 +104,7 @@ const Register = () => {
                   label="username"
                   name="username"
                   autoComplete="username"
-                  ref={register({equired: true})}
+                  ref={register({required: true})}
                   onChange={changeHandler}
                 />
               </Grid>
@@ -156,7 +156,7 @@ const Register = () => {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

@@ -14,8 +14,9 @@ import AuctionCard from './components/AuctionCard'
 import  Register  from './components/Register'
 import SellersDashboard from './components/SellersDashboard';
 import UpdateAuction from './components/UpdateAuction';
-import SavedAuction from './components/SaveAuction'
 
+import SavedAuction from './components/SaveAuction'
+import Dashboard from './components/Dashboard'
 
 
 // Context
@@ -57,9 +58,7 @@ const App = () => {
     <div className="App">
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <AuctionContext.Provider value={{ auctionList, setAuctionList }}>
-          <Link to='/login'>Login</Link>
-          <Link to='/protected/dashboard'>Dashboard</Link>
-          <Link to='/protected/seller'>Seller</Link>
+
 
           <Navigation>
             <NavItem icon="🛎">
@@ -67,20 +66,14 @@ const App = () => {
             </NavItem>
           </Navigation>
 
-          <BuyersDashBoard />
-          <Auctions/>
-          {/* <AuctionCard /> */}
-
-
-
           <Switch>
             <ProtectedRoute exact path='/protected/seller' component={AuctionForm} />
             <ProtectedRoute exact path='/protected/dashboard'>
-              <SellersDashboard />
+              <Dashboard />
             </ProtectedRoute>
             <ProtectedRoute exact path='/protected/update-auction/:id' component={UpdateAuction} />
+            <Route exact path ='/' component={Register} />
             <Route exact path="/login" component={Login} />
-            {/* <Route component={Login} /> */}
 
           </Switch>
 
