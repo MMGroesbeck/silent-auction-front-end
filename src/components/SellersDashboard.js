@@ -9,7 +9,6 @@ const SellersDashboard = () => {
     const auctions = useContext(AuctionContext);
     const user = useContext(UserContext);
     const { push } = useHistory();
-    const { id } = useParams
 
     useEffect(() => {
         axiosWithAuth()
